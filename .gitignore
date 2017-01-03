@@ -1,0 +1,6 @@
+*~
+*.tar.gz
+tags
+cscope.*
+*.taghl
+*.o
