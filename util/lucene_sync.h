@@ -1,7 +1,7 @@
 #ifndef LUCENE_SYNC_H
 #define LUCENE_SYNC_H
 
-#include "lucene.h"
+#include "lucene_types.h"
 
 namespace Lucene {
 

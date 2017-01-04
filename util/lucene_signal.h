@@ -3,7 +3,7 @@
 
 #include <condition_variable>
 #include <mutex>
-#include "lucene.h"
+#include "lucene_types.h"
 
 namespace Lucene {
 

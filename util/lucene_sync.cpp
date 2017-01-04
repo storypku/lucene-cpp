@@ -1,4 +1,3 @@
-#include "lucene.h"
 #include "lucene_sync.h"
 #include "synchronize.h"
 #include "lucene_signal.h"

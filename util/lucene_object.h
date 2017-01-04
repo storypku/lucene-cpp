@@ -12,8 +12,6 @@
 
 #include "lucene_sync.h"
 
-typedef std::string String;
-
 #define LUCENE_INTERFACE(Name) \
     static String _getClassName() { return #Name; } \
     virtual String getClassName() { return #Name; }
@@ -23,6 +21,8 @@ typedef std::string String;
     std::shared_ptr<Name> shared_from_this() { return std::static_pointer_cast<Name>(LuceneObject::shared_from_this()); } \
 
 namespace Lucene {
+
+typedef std::string String;
 
 /// Base class for all Lucene classes
 class LuceneObject : public LuceneSync, public std::enable_shared_from_this<LuceneObject> {
