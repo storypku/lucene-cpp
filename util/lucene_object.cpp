@@ -1,5 +1,5 @@
 #include "lucene_object.h"
-// #include "string_utils.h"
+#include "lucene_exception.h"
 
 namespace Lucene {
 
@@ -15,7 +15,7 @@ void LuceneObject::initialize() {
 
 LuceneObjectPtr LuceneObject::clone(const LuceneObjectPtr& other) {
     if (!other) {
-        // boost::throw_exception(UnsupportedOperationException(L"clone must not be null"));
+        throw UnsupportedOperationException("clone must not be null");
     }
     return other;
 }
@@ -37,4 +37,4 @@ String LuceneObject::to_string() {
     return std::to_string(hash_code());
 }
 
-} // namespace Eureka
+} // namespace Lucene

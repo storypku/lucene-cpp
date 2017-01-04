@@ -1,9 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2009-2014 Alan Wright. All rights reserved.
-// Distributable under the terms of either the Apache License (Version 2.0)
-// or the GNU Lesser General Public License.
-/////////////////////////////////////////////////////////////////////////////
-
 #ifndef LUCENE_OBJECT_H
 #define LUCENE_OBJECT_H
 
@@ -23,6 +17,7 @@
 namespace Lucene {
 
 typedef std::string String;
+const String EmptyString;
 
 /// Base class for all Lucene classes
 class LuceneObject : public LuceneSync, public std::enable_shared_from_this<LuceneObject> {
