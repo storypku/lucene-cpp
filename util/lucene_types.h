@@ -1,6 +1,7 @@
 #ifndef LUCENE_TYPES_H
 #define LUCENE_TYPES_H
 
+#include <cstdint>
 #include <memory> // std::shared_ptr, std::weak_ptr
 
 #define DECLARE_SHARED_PTR(Type) \
