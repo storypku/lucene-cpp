@@ -18,8 +18,7 @@ LuceneSignalPtr LuceneSync::get_signal() {
     return m_objectSignal;
 }
 
-void LuceneSync::lock(int32_t timeout) {
-    // 忽略timeout参数
+void LuceneSync::lock() {
     this->get_sync()->lock();
 }
 

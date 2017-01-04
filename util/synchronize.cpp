@@ -1,6 +1,6 @@
-#include "lucene.h"
 #include <mutex>
 #include <chrono>
+#include "lucene_factory.h"
 #include "synchronize.h"
 #include "lucene_thread.h"
 
@@ -14,7 +14,7 @@ Synchronize::~Synchronize() {
 
 void Synchronize::create_sync(SynchronizePtr& sync) {
     static std::mutex lockMutex;
-    std::mutex::scoped_lock syncLock(lockMutex);
+    std::lock_guard<std::mutex> syncLock(lockMutex);
     if (!sync) {
         sync = new_instance<Synchronize>();
     }

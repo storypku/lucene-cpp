@@ -21,8 +21,8 @@ public:
     /// Return this object signal.
     virtual LuceneSignalPtr get_signal();
 
-    /// Lock this object using an optional timeout.
-    virtual bool lock(int32_t timeout = 0);
+    /// Lock this object.
+    virtual void lock();
 
     /// Unlock this object.
     virtual void unlock();
