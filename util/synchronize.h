@@ -1,7 +1,7 @@
 #ifndef SYNCHRONIZE_H
 #define SYNCHRONIZE_H
 
-#include <boost/thread/recursive_mutex.hpp>
+#include <mutex>
 #include "lucene.h"
 
 namespace Lucene {
@@ -13,7 +13,7 @@ public:
     virtual ~Synchronize();
 
 protected:
-    boost::recursive_timed_mutex m_mutexSynchronize;
+    std::recursive_timed_mutex m_mutexSynchronize;
     int64_t m_lockThread;
     int32_t m_recursionCount;
 
@@ -22,7 +22,7 @@ public:
     static void create_sync(SynchronizePtr& sync);
 
     /// Lock mutex using an optional timeout.
-    void lock(int32_t timeout = 0);
+    bool lock(int32_t timeout = 0);
 
     /// Unlock mutex.
     void unlock();
