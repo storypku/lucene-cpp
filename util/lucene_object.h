@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <string>
+#include <fstream>
 
 #include "lucene_sync.h"
 
@@ -18,6 +19,12 @@ namespace Lucene {
 
 typedef std::string String;
 const String EmptyString;
+
+typedef std::shared_ptr<std::ifstream> IfstreamPtr;
+
+} // namespace Lucene
+
+namespace Lucene {
 
 /// Base class for all Lucene classes
 class LuceneObject : public LuceneSync, public std::enable_shared_from_this<LuceneObject> {

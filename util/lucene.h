@@ -7,6 +7,14 @@
 #   define UNUSED
 #endif
 
+#include "array.h"
+
+namespace Lucene {
+
+typedef Array<uint8_t> ByteArray;
+
+} // namespace Lucene
+
 #include "synchronize.h"
 #include "lucene_sync.h"
 #include "lucene_signal.h"
@@ -14,5 +22,6 @@
 #include "lucene_types.h"
 #include "lucene_thread.h"
 #include "lucene_factory.h"
+#include "lucene_exception.h"
 
 #endif // LUCENE_H
