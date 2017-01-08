@@ -1,7 +1,7 @@
 #include "lucene.h"
 #include "file_reader.h"
 #include "misc_utils.h"
-// #include "file_utils.h"
+#include "file_utils.h"
 
 namespace Lucene {
 
