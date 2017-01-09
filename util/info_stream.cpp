@@ -15,6 +15,7 @@ InfoStreamFile::InfoStreamFile(const String& path)
 }
 
 InfoStreamFile::~InfoStreamFile() {
+    // Added by storypku
     m_file.close();
 }
 

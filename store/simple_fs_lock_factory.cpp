@@ -37,7 +37,13 @@ bool SimpleFSLock::obtain() {
         f.open(FileUtils::join_path(m_lockDir, m_lockFile), std::ios::binary | std::ios::out);
     } catch (...) {
     }
-    return f.is_open();
+
+    bool success = f.is_open();
+    if (success) {
+        f.close();
+    }
+
+    return success;
 }
 
 void SimpleFSLock::release() {

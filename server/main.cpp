@@ -12,5 +12,7 @@ int main(UNUSED int argc, UNUSED char *argv[]) {
     LockPtr lock = simpLockFactory.make_lock("write.lock");
     std::cout << lock->obtain() << "\n";
     std::cout << lock->to_string() << "\n";
+    // lock->release();
+    simpLockFactory.clear_lock("write.lock");
     return 0;
 }
