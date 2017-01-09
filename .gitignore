@@ -4,4 +4,10 @@ tags
 cscope.*
 *.taghl
 *.o
+*.log
+*.orig
+*.org
+*.bak
+*.bak.cpp
+*.swp
 lucene
