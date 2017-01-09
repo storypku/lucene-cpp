@@ -8,8 +8,8 @@
 #include "lucene_sync.h"
 
 #define LUCENE_INTERFACE(Name) \
-    static String _getClassName() { return #Name; } \
-    virtual String getClassName() { return #Name; }
+    static String _get_class_name() { return #Name; } \
+    virtual String get_class_name() { return #Name; }
 
 #define LUCENE_CLASS(Name) \
     LUCENE_INTERFACE(Name); \
