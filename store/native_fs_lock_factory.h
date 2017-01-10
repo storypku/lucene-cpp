@@ -29,7 +29,7 @@ protected:
 class NativeFSLock : public Lock {
 public:
     NativeFSLock(const String& lockDir, const String& lockFileName);
-    virtual ~NativeFSLock() = default;
+    virtual ~NativeFSLock();
 
     LUCENE_CLASS(NativeFSLock);
 

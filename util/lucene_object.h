@@ -21,6 +21,7 @@ typedef std::string String;
 const String EmptyString;
 
 typedef std::shared_ptr<std::ifstream> IfstreamPtr;
+typedef std::shared_ptr<boost::interprocess::file_lock> FileLockPtr;
 
 } // namespace Lucene
 
