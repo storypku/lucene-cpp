@@ -25,5 +25,6 @@ typedef Array<uint8_t> ByteArray;
 #include "lucene_exception.h"
 
 #include "hash_set.h"
+#include "collection.h"
 
 #endif // LUCENE_H
