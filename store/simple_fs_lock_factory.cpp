@@ -10,12 +10,15 @@ SimpleFSLockFactory::SimpleFSLockFactory(const String& lockDir) {
 }
 
 LockPtr SimpleFSLockFactory::make_lock(const String& lockName) {
-    return new_lucene<SimpleFSLock>(m_lockDir, m_lockPrefix.empty() ? lockName : m_lockPrefix + "-" + lockName);
+    return new_lucene<SimpleFSLock>(m_lockDir,
+                                    m_lockPrefix.empty() ? lockName : m_lockPrefix + "-" + lockName);
 }
 
 void SimpleFSLockFactory::clear_lock(const String& lockName) {
     if (FileUtils::is_directory(m_lockDir)) {
-        String lockPath(FileUtils::join_path(m_lockDir, m_lockPrefix.empty() ? lockName : m_lockPrefix + "-" + lockName));
+        String lockPath(FileUtils::join_path(m_lockDir,
+                                             m_lockPrefix.empty() ? lockName : m_lockPrefix + "-" + lockName));
+
         if (FileUtils::file_exists(lockPath) && !FileUtils::remove_file(lockPath)) {
             throw IOException("Can't delete " + lockPath);
         }
@@ -37,6 +40,7 @@ bool SimpleFSLock::obtain() {
     }
 
     std::ofstream f;
+
     try {
         f.open(FileUtils::join_path(m_lockDir, m_lockFile), std::ios::binary | std::ios::out);
     } catch (...) {
@@ -50,6 +54,7 @@ bool SimpleFSLock::obtain() {
 
 void SimpleFSLock::release() {
     String path(FileUtils::join_path(m_lockDir, m_lockFile));
+
     if (FileUtils::file_exists(path) && !FileUtils::remove_file(path)) {
         throw LockReleaseFailedException("Failed to delete " + path);
     }

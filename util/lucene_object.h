@@ -6,6 +6,7 @@
 #include <fstream>
 
 #include "lucene_sync.h"
+#include "hash_map.h"
 
 #define LUCENE_INTERFACE(Name) \
     static String _get_class_name() { return #Name; } \
@@ -28,6 +29,7 @@ const String EmptyString;
 
 typedef std::shared_ptr<std::ifstream> IfstreamPtr;
 typedef std::shared_ptr<boost::interprocess::file_lock> FileLockPtr;
+typedef HashMap<String, String> MapStringString;
 
 } // namespace Lucene
 

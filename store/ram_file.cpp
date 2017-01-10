@@ -52,6 +52,7 @@ ByteArray RAMFile::add_buffer(int32_t size) {
     }
 
     RAMDirectoryPtr directory(m_directory_.lock());
+
     if (directory) {
         SyncLock dirLock(directory);
         directory->m_sizeInBytes += size;

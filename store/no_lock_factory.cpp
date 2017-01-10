@@ -5,15 +5,18 @@ namespace Lucene {
 
 NoLockFactoryPtr NoLockFactory::get_no_lock_factory() {
     static NoLockFactoryPtr singleton;
+
     if (!singleton) {
         singleton = new_lucene<NoLockFactory>();
     }
+
     return singleton;
 }
 
 NoLockPtr NoLockFactory::get_singleton_lock() {
     // Single instance returned whenever make_lock is called.
     static NoLockPtr singletonLock;
+
     if (!singletonLock) {
         singletonLock = new_lucene<NoLock>();
     }

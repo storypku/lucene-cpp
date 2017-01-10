@@ -13,13 +13,16 @@ bool Lock::obtain(int32_t lockWaitTimeout) {
     bool locked = obtain();
     int32_t maxSleepCount = lockWaitTimeout / LOCK_POLL_INTERVAL;
     int32_t sleepCount = 0;
+
     while (!locked) {
         if (lockWaitTimeout != LOCK_OBTAIN_WAIT_FOREVER && sleepCount++ >= maxSleepCount) {
             throw LockObtainFailedException("Lock obtain timed out");
         }
+
         LuceneThread::thread_sleep(LOCK_POLL_INTERVAL);
         locked = obtain();
     }
+
     return locked;
 }
 
