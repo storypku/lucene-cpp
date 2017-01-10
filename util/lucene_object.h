@@ -15,6 +15,12 @@
     LUCENE_INTERFACE(Name); \
     std::shared_ptr<Name> shared_from_this() { return std::static_pointer_cast<Name>(LuceneObject::shared_from_this()); } \
 
+namespace boost {
+    namespace interprocess {
+        class file_lock;
+    }
+}
+
 namespace Lucene {
 
 typedef std::string String;
