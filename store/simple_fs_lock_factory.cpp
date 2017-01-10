@@ -42,7 +42,10 @@ bool SimpleFSLock::obtain() {
     } catch (...) {
     }
 
-    return f.is_open();
+    bool success = f.is_open();
+    f.close();
+
+    return success;
 }
 
 void SimpleFSLock::release() {

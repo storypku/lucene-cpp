@@ -7,6 +7,8 @@
 #   define UNUSED
 #endif
 
+#include <boost/assert.hpp>
+
 #include "array.h"
 
 namespace Lucene {
