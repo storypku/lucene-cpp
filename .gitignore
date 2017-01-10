@@ -10,4 +10,5 @@ cscope.*
 *.bak
 *.bak.cpp
 *.swp
+indexDir/*
 lucene
