@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <algorithm>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 namespace Lucene {
 
@@ -20,11 +21,15 @@ public:
         std::fill(dest + destFrom, dest + destTo, value);
     }
 
-    /// Perform unsigned right-shift (left bits are zero filled)
-    static int64_t unsignedShift(int64_t num, int64_t shift);
+    static uint64_t get_time_millis(boost::posix_time::ptime time);
+
+    static uint64_t current_time_millis();
 
     /// Perform unsigned right-shift (left bits are zero filled)
-    static int32_t unsignedShift(int32_t num, int32_t shift);
+    static int64_t unsigned_shift(int64_t num, int64_t shift);
+
+    /// Perform unsigned right-shift (left bits are zero filled)
+    static int32_t unsigned_shift(int32_t num, int32_t shift);
 };
 
 } // namespace Lucene

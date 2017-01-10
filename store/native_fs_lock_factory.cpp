@@ -39,6 +39,9 @@ NativeFSLock::~NativeFSLock() {
     }
 }
 
-
+String NativeFSLock::to_string() {
+    return get_class_name() + "@" + m_path;
+}
 
 } // namespace Lucene
+
