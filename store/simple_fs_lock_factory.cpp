@@ -32,18 +32,17 @@ bool SimpleFSLock::obtain() {
         throw RuntimeException("Found regular file where directory expected: " + m_lockDir);
     }
 
+    if (FileUtils::file_exists(FileUtils::join_path(m_lockDir, m_lockFile))) {
+        return false; // 如果文件存在，则认为锁已经存在。在Lucene6.2.1中也说，... fail if it already exists.
+    }
+
     std::ofstream f;
     try {
         f.open(FileUtils::join_path(m_lockDir, m_lockFile), std::ios::binary | std::ios::out);
     } catch (...) {
     }
 
-    bool success = f.is_open();
-    if (success) {
-        f.close();
-    }
-
-    return success;
+    return f.is_open();
 }
 
 void SimpleFSLock::release() {
