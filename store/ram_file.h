@@ -44,6 +44,8 @@ protected:
     /// Allocate a new buffer. Subclasses can allocate differently.
     virtual ByteArray new_buffer(int32_t size);
 
+public:
+    friend class RAMDirectory;
 };
 
 } // namespace Lucene

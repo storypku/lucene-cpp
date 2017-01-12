@@ -82,7 +82,7 @@ public:
     }
 
     template <class ITER>
-    void putAll(ITER first, ITER last) {
+    void put_all(ITER first, ITER last) {
         for (iterator current = first; current != last; ++current) {
             (*m_container)[current->first] = current->second;
         }
@@ -153,10 +153,11 @@ public:
         if (findValue != this->m_container->end()) {
             return findValue->second;
         }
-        remove_weak(); // 时机为什么在这儿？
+        remove_weak();
         return VALUE();
     }
 };
 
-} // namespace Lucene
-#endif // HASH_MAP_H
+}
+
+#endif

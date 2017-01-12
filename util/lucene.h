@@ -10,23 +10,20 @@
 #include <boost/assert.hpp>
 
 #include "array.h"
+#include "hash_map.h"
+#include "hash_set.h"
+#include "lucene_object.h"
+#include "lucene_types.h"
+#include "lucene_thread.h"
+#include "lucene_exception.h"
+#include "collection.h"
+#include "synchronize.h"
 
 namespace Lucene {
 
 typedef Array<uint8_t> ByteArray;
+typedef HashMap< String, RAMFilePtr > MapStringRAMFile;
 
 } // namespace Lucene
-
-#include "synchronize.h"
-#include "lucene_sync.h"
-#include "lucene_signal.h"
-#include "lucene_object.h"
-#include "lucene_types.h"
-#include "lucene_thread.h"
-#include "lucene_factory.h"
-#include "lucene_exception.h"
-
-#include "hash_set.h"
-#include "collection.h"
 
 #endif // LUCENE_H

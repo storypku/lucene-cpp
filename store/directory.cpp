@@ -2,7 +2,7 @@
 #include "directory.h"
 #include "lock_factory.h"
 #include "buffered_index_output.h"
-// TODO #include "index_file_name_filter.h"
+// #include "index_file_name_filter.h"
 #include "index_input.h"
 #include "index_output.h"
 
@@ -66,6 +66,7 @@ void Directory::copy(const DirectoryPtr& src, const DirectoryPtr& dest, bool clo
             os = dest->create_output(*file);
             // read current file
             is = src->open_input(*file);
+            // and copy to dest directory
             int64_t len = is->length();
             int64_t readCount = 0;
 
@@ -101,6 +102,12 @@ void Directory::copy(const DirectoryPtr& src, const DirectoryPtr& dest, bool clo
 
     if (closeDirSrc) {
         src->close();
+    }
+}
+
+void Directory::ensure_open() {
+    if (!m_isOpen) {
+        throw AlreadyClosedException("This directory is closed");
     }
 }
 
