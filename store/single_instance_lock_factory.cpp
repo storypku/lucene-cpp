@@ -10,7 +10,12 @@ SingleInstanceLockFactory::SingleInstanceLockFactory()
 LockPtr SingleInstanceLockFactory::make_lock(const String& name) {
     // We do not use the LockPrefix at all, because the private HashSet instance
     // effectively scopes the locking to this single Directory instance.
-    return new_lucene<SingleInstanceLock>(m_locks, lockName);
+    return LockPtr();
+    // return new_lucene<SingleInstanceLock>(m_locks, lockName);
+}
+
+void SingleInstanceLockFactory::clear_lock(const String& name) {
+
 }
 
 } // namespace Lucene

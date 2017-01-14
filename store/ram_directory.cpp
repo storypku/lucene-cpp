@@ -1,7 +1,7 @@
 #include "lucene.h"
 #include "ram_file.h"
 #include "ram_directory.h"
-#include "ram_input_stream.h"
+// #include "ram_input_stream.h"
 #include "ram_output_stream.h"
 #include "single_instance_lock_factory.h"
 // #include "lucene_thread.h"
@@ -147,7 +147,8 @@ IndexInputPtr RAMDirectory::open_input(const String& name) {
         }
         file = ramFile->second;
     }
-    return new_lucene<RAMInputStream>(file);
+    return IndexInputPtr(); // tODo
+    // return new_lucene<RAMInputStream>(file);
 }
 
 void RAMDirectory::close() {

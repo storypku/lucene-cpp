@@ -32,8 +32,8 @@ void RAMOutputStream::write_to(const IndexOutputPtr& out) {
     int32_t buffer = 0;
     while (pos < end) {
         int32_t length = BUFFER_SIZE;
-        int64_t nexPos = pos + length;
-        if (nexPos > end) {
+        int64_t nextPos = pos + length;
+        if (nextPos > end) {
             length = (int32_t)(end - pos);
         }
         out->write_bytes(m_file->get_buffer(buffer++).get(), length);
@@ -47,7 +47,7 @@ void RAMOutputStream::reset() {
     m_bufferPosition = 0;
     m_bufferStart = 0;
     m_bufferLength = 0;
-    m_file->setLength(0);
+    m_file->set_length(0);
 }
 
 void RAMOutputStream::close() {
@@ -74,10 +74,10 @@ void RAMOutputStream::write_byte(uint8_t b) {
         ++ m_currentBufferIndex;
         switch_current_buffer();
     }
-    m_currentBuffer[bufferPosition] = b;
+    m_currentBuffer[m_bufferPosition] = b;
 }
 
-void RAMOutputStream::write_bytes(cont uint8_t *b, int32_t offset, int32_t length) {
+void RAMOutputStream::write_bytes(const uint8_t *b, int32_t offset, int32_t length) {
     BOOST_ASSERT(b != NULL);
     while (length > 0) {
         if (m_bufferPosition == m_bufferLength) {
