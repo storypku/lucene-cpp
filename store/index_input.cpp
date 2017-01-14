@@ -68,6 +68,7 @@ LuceneObjectPtr IndexInput::clone(const LuceneObjectPtr& other) {
     // IndexInputPtr cloneIndexInput(std::dynamic_pointer_cast<IndexInput>
     //                              (LuceneObject::clone(other)));
     // return cloneIndexInput;
+    return LuceneObjectPtr();
 }
 
 } // namespace Lucene

@@ -13,12 +13,12 @@ using namespace Lucene;
 
 int main(UNUSED int argc, UNUSED char *argv[]) {
     std::cout << "Hello lucene\n";
-    RAMDirectory directory;
-    IndexOutputPtr out = directory.create_output("hello");
+    RAMDirectoryPtr directory(new_instance<RAMDirectory>());
+    IndexOutputPtr out = directory->create_output("hello");
 
     out->write_byte('a');
     std::cout << out->length() << "\n";
-    std::cout << directory.to_string() << "\n";
+    std::cout << directory->to_string() << "\n";
     std::cout << MiscUtils::current_time_millis() << " " << time(NULL) << "\n";
 
     return 0;

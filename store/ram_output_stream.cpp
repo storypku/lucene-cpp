@@ -55,6 +55,7 @@ void RAMOutputStream::close() {
 }
 
 int64_t RAMOutputStream::length() {
+    set_file_length(); // added by storypku
     return m_file->get_length();
 }
 
@@ -74,7 +75,7 @@ void RAMOutputStream::write_byte(uint8_t b) {
         ++ m_currentBufferIndex;
         switch_current_buffer();
     }
-    m_currentBuffer[m_bufferPosition] = b;
+    m_currentBuffer[m_bufferPosition++] = b;
 }
 
 void RAMOutputStream::write_bytes(const uint8_t *b, int32_t offset, int32_t length) {

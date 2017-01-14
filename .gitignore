@@ -10,5 +10,7 @@ cscope.*
 *.bak
 *.bak.cpp
 *.swp
+.idea/*
+build/*
 indexDir/*
 lucene
