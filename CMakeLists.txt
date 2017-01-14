@@ -3,8 +3,8 @@ project(lucene_cpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-include_directories(store index util server /usr/local/include)
-link_directories(/usr/local/lib)
+INCLUDE_DIRECTORIES(store index util server /usr/local/include)
+LINK_DIRECTORIES(/usr/local/lib)
 
 set(SOURCE_FILES
     server/main.cpp
