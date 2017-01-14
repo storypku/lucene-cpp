@@ -74,7 +74,7 @@ public:
         return m_container.get() != NULL;
     }
 
-    bool operator! () const {
+    bool operator!() const {
         return !m_container;
     }
 

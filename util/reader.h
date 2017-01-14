@@ -21,7 +21,7 @@ public:
     virtual int32_t read();
 
     /// Read characters in to a portion of an array.
-    virtual int32_t read(char *buffer, int32_t offset, int32_t length) = 0;
+    virtual int32_t read(char* buffer, int32_t offset, int32_t length) = 0;
 
     /// Skip characters.
     virtual int64_t skip(int64_t n);

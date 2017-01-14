@@ -26,19 +26,21 @@ int32_t FileReader::read() {
     return read(&buffer, 0, 1) == FILE_EOF ? FILE_EOF : buffer;
 }
 
-int32_t FileReader::read(char *buffer, int32_t offset, int32_t length) {
+int32_t FileReader::read(char* buffer, int32_t offset, int32_t length) {
     try {
         if (m_file->eof()) {
             return FILE_EOF;
         }
+
         if (!m_fileBuffer) {
             m_fileBuffer = ByteArray::new_instance(length);
         }
+
         if (length > m_fileBuffer.size()) {
             m_fileBuffer.resize(length);
         }
 
-        m_file->read((char *)m_fileBuffer.get(), length);
+        m_file->read((char*)m_fileBuffer.get(), length);
         int32_t readLength = m_file->gcount();
         MiscUtils::array_copy(m_fileBuffer.get(), 0, buffer, offset, readLength);
 

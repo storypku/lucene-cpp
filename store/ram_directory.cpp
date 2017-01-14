@@ -1,7 +1,7 @@
 #include "lucene.h"
 #include "ram_file.h"
 #include "ram_directory.h"
-// #include "ram_input_stream.h"
+#include "ram_input_stream.h"
 #include "ram_output_stream.h"
 #include "single_instance_lock_factory.h"
 // #include "lucene_thread.h"
@@ -48,9 +48,11 @@ HashSet<String> RAMDirectory::list_all() {
     SyncLock syncLock(this);
     ensure_open();
     HashSet<String> result(HashSet<String>::new_instance());
+
     for (auto fileName = m_fileMap.begin(); fileName != m_fileMap.end(); ++fileName) {
         result.add(fileName->first);
     }
+
     return result;
 }
 
@@ -65,6 +67,7 @@ uint64_t RAMDirectory::file_modified(const String& name) {
     ensure_open();
 
     auto ramFile = m_fileMap.find(name);
+
     if (ramFile == m_fileMap.end()) {
         throw FileNotFoundException(name);
     }
@@ -78,9 +81,11 @@ void RAMDirectory::touch_file(const String& name) {
     {
         SyncLock syncLock(this);
         auto ramFile = m_fileMap.find(name);
+
         if (ramFile == m_fileMap.end()) {
             throw FileNotFoundException(name);
         }
+
         file = ramFile->second;
     }
 
@@ -97,9 +102,11 @@ int64_t RAMDirectory::file_length(const String& name) {
     SyncLock syncLock(this);
     ensure_open();
     auto ramFile = m_fileMap.find(name);
+
     if (ramFile == m_fileMap.end()) {
         throw FileNotFoundException(name);
     }
+
     return ramFile->second->get_length();
 }
 
@@ -114,9 +121,11 @@ void RAMDirectory::delete_file(const String& name) {
     ensure_open();
 
     auto ramFile = m_fileMap.find(name);
+
     if (ramFile == m_fileMap.end()) {
         throw FileNotFoundException(name);
     }
+
     m_sizeInBytes -= ramFile->second->get_size_in_bytes();
     m_fileMap.remove(name);
 }
@@ -127,10 +136,12 @@ IndexOutputPtr RAMDirectory::create_output(const String& name) {
     {
         SyncLock syncLock(this);
         auto existing = m_fileMap.find(name);
+
         if (existing != m_fileMap.end()) {
             m_sizeInBytes -= existing->second->get_size_in_bytes();
             existing->second->m_directory_.reset();
         }
+
         m_fileMap.put(name, file);
     }
     return new_lucene<RAMOutputStream>(file);
@@ -142,13 +153,14 @@ IndexInputPtr RAMDirectory::open_input(const String& name) {
     {
         SyncLock syncLock(this);
         auto ramFile = m_fileMap.find(name);
+
         if (ramFile == m_fileMap.end()) {
             throw FileNotFoundException(name);
         }
+
         file = ramFile->second;
     }
-    return IndexInputPtr(); // tODo
-    // return new_lucene<RAMInputStream>(file);
+    return new_lucene<RAMInputStream>(file);
 }
 
 void RAMDirectory::close() {

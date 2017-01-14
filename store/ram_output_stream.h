@@ -44,7 +44,7 @@ public:
 
     virtual void write_byte(uint8_t b);
 
-    virtual void write_bytes(const uint8_t *b, int32_t offset, int32_t length);
+    virtual void write_bytes(const uint8_t* b, int32_t offset, int32_t length);
 
     /// Forces any buffered output to be written.
     virtual void flush();

@@ -24,6 +24,7 @@ void FreeMemory(void* memory) {
     if (memory == nullptr) {
         return;
     }
+
     free(memory);
 }
 

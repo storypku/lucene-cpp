@@ -56,7 +56,7 @@ protected:
     bool is_running();
 
     /// function that controls the lifetime of the running thread.
-    static void run_thread(LuceneThread *thread);
+    static void run_thread(LuceneThread* thread);
 };
 
 } // namespace Lucene

@@ -31,6 +31,7 @@ bool touch_file(const String& path) {
 int64_t file_length(const String& path) {
     boost::system::error_code ec;
     int64_t fileSize = (int64_t)boost::filesystem::file_size(path.c_str(), ec);
+
     for (int32_t i = 0; !ec && fileSize == 0 && i < 100; ++i) {
         LuceneThread::thread_yield();
         fileSize = (int64_t)boost::filesystem::file_size(path.c_str(), ec);
@@ -43,6 +44,7 @@ bool set_file_length(const String& path, int64_t length) {
     if (!file_exists(path)) {
         return false;
     }
+
     return truncate(boost::filesystem::path(path).c_str(), (off_t)length) == 0;
 }
 
@@ -76,6 +78,7 @@ bool is_directory(const String& path) {
 bool list_directory(const String& path, bool filesOnly, HashSet<String> dirList) {
     boost::system::error_code ec;
     boost::filesystem::directory_iterator dir(path.c_str(), ec);
+
     if (ec) {
         return false;
     }
@@ -85,11 +88,13 @@ bool list_directory(const String& path, bool filesOnly, HashSet<String> dirList)
             dirList.add(dir->path().filename().string());
         }
     }
+
     return true;
 }
 
 bool copy_directory(const String& source, const String& dest) {
     HashSet<String> dirList(HashSet<String>::new_instance());
+
     if (!list_directory(source, true, dirList)) {
         return false;
     }

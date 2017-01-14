@@ -35,6 +35,7 @@ public:
         } else {
             m_data = (TYPE*)ReallocMemory(m_data, size * sizeof(TYPE));
         }
+
         this->m_size = size;
     }
 };
@@ -73,6 +74,7 @@ public:
         } else {
             m_container->resize(size);
         }
+
         m_array = m_container.get();
     }
 
@@ -88,6 +90,7 @@ public:
         if (m_array->m_size != other.m_array->m_size) {
             return false;
         }
+
         return (std::memcmp(m_array->m_data, other.m_array->m_data, m_array->m_size) == 0);
     }
 
@@ -95,7 +98,7 @@ public:
         return (int32_t)(int64_t)m_array;
     }
 
-    TYPE& operator[] (int32_t i) const {
+    TYPE& operator[](int32_t i) const {
         BOOST_ASSERT(i >= 0 && i < m_array->m_size);
         return m_array->m_data[i];
     }
@@ -104,7 +107,7 @@ public:
         return m_container.get() != nullptr;
     }
 
-    bool operator! () const {
+    bool operator!() const {
         return !m_container;
     }
 

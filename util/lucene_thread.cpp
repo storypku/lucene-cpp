@@ -16,12 +16,14 @@ void LuceneThread::start() {
     set_running(true);
 }
 
-void LuceneThread::run_thread(LuceneThread *thread) {
+void LuceneThread::run_thread(LuceneThread* thread) {
     LuceneThreadPtr thread_object(thread->shared_from_this());
+
     try {
         thread_object->run();
     } catch (...) {
     }
+
     thread_object->set_running(false);
     thread_object.reset();
 }

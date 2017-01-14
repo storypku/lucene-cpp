@@ -7,6 +7,7 @@
 
 #include "lucene_sync.h"
 #include "hash_map.h"
+#include "string_utils.h"
 
 #define LUCENE_INTERFACE(Name) \
     static String _get_class_name() { return #Name; } \
@@ -17,15 +18,12 @@
     std::shared_ptr<Name> shared_from_this() { return std::static_pointer_cast<Name>(LuceneObject::shared_from_this()); } \
 
 namespace boost {
-    namespace interprocess {
-        class file_lock;
-    }
+namespace interprocess {
+class file_lock;
+}
 }
 
 namespace Lucene {
-
-typedef std::string String;
-const String EmptyString;
 
 typedef std::shared_ptr<std::ifstream> IfstreamPtr;
 typedef std::shared_ptr<boost::interprocess::file_lock> FileLockPtr;

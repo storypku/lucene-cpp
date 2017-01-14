@@ -10,7 +10,7 @@ void* AllocMemory(size_t size);
 void* ReallocMemory(void* memory, size_t size);
 
 /// Release a given block of memory.
-void FreeMemory(void *memory);
+void FreeMemory(void* memory);
 
 } // namespace Lucene
 

@@ -30,12 +30,15 @@ void RAMOutputStream::write_to(const IndexOutputPtr& out) {
     int64_t end = m_file->get_length();
     int64_t pos = 0;
     int32_t buffer = 0;
+
     while (pos < end) {
         int32_t length = BUFFER_SIZE;
         int64_t nextPos = pos + length;
+
         if (nextPos > end) {
             length = (int32_t)(end - pos);
         }
+
         out->write_bytes(m_file->get_buffer(buffer++).get(), length);
         pos = nextPos;
     }
@@ -67,6 +70,7 @@ void RAMOutputStream::seek(int64_t pos) {
         m_currentBufferIndex = (int32_t)(pos / BUFFER_SIZE);
         switch_current_buffer();
     }
+
     m_bufferPosition = (int32_t)(pos % BUFFER_SIZE);
 }
 
@@ -75,16 +79,19 @@ void RAMOutputStream::write_byte(uint8_t b) {
         ++ m_currentBufferIndex;
         switch_current_buffer();
     }
+
     m_currentBuffer[m_bufferPosition++] = b;
 }
 
-void RAMOutputStream::write_bytes(const uint8_t *b, int32_t offset, int32_t length) {
+void RAMOutputStream::write_bytes(const uint8_t* b, int32_t offset, int32_t length) {
     BOOST_ASSERT(b != NULL);
+
     while (length > 0) {
         if (m_bufferPosition == m_bufferLength) {
             ++ m_currentBufferIndex;
             switch_current_buffer();
         }
+
         int32_t remainInBuffer = m_currentBuffer.size() - m_bufferPosition;
         int32_t bytesToCopy = length < remainInBuffer ? length : remainInBuffer;
         MiscUtils::array_copy(b, offset, m_currentBuffer.get(), m_bufferPosition, bytesToCopy);
@@ -100,6 +107,7 @@ void RAMOutputStream::switch_current_buffer() {
     } else {
         m_currentBuffer = m_file->get_buffer(m_currentBufferIndex);
     }
+
     m_bufferPosition = 0;
     m_bufferStart = (int64_t)BUFFER_SIZE * (int64_t)m_currentBufferIndex;
     m_bufferLength = m_currentBuffer.size();
@@ -107,6 +115,7 @@ void RAMOutputStream::switch_current_buffer() {
 
 void RAMOutputStream::set_file_length() {
     int64_t pointer = m_bufferStart + m_bufferPosition;
+
     if (pointer > m_file->get_length()) {
         m_file->set_length(pointer);
     }

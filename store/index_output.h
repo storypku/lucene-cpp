@@ -24,7 +24,7 @@ public:
     /// Writes an array of bytes.
     /// @param b the bytes to write.
     /// @param length the number of bytes to write.
-    virtual void write_bytes(const uint8_t *b, int32_t offset, int32_t length) = 0;
+    virtual void write_bytes(const uint8_t* b, int32_t offset, int32_t length) = 0;
 
     /// Forces any buffered output to be written.
     virtual void flush() = 0;
@@ -46,7 +46,7 @@ public:
     /// Writes an array of bytes.
     /// @param b the bytes to write.
     /// @param length the number of bytes to write.
-    void write_bytes(const uint8_t *b, int32_t length);
+    void write_bytes(const uint8_t* b, int32_t length);
 
     /// Writes an int as four bytes.
     void write_int(int32_t i);

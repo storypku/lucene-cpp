@@ -17,6 +17,7 @@ LuceneObjectPtr LuceneObject::clone(const LuceneObjectPtr& other) {
     if (!other) {
         throw UnsupportedOperationException("clone must not be null");
     }
+
     return other;
 }
 

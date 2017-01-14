@@ -28,7 +28,7 @@ public:
     virtual int32_t read();
 
     /// Read characters into a portion of an array.
-    virtual int32_t read(char *buffer, int32_t offset, int32_t length);
+    virtual int32_t read(char* buffer, int32_t offset, int32_t length);
 
     /// Close the stream.
     virtual void close();

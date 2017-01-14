@@ -20,7 +20,7 @@ public:
     /// @param b the array to read bytes into.
     /// @param offset the offset in the array to start storing bytes.
     /// @param length the number of bytes to read.
-    virtual void read_bytes(uint8_t* b, int32_t offset, int32_t length);
+    virtual void read_bytes(uint8_t* b, int32_t offset, int32_t length) = 0;
 
     /// Reads four bytes and returns an int.
     virtual int32_t read_int();

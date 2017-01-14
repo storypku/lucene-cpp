@@ -15,6 +15,7 @@ Synchronize::~Synchronize() {
 void Synchronize::create_sync(SynchronizePtr& sync) {
     static std::mutex lockMutex;
     std::lock_guard<std::mutex> syncLock(lockMutex);
+
     if (!sync) {
         sync = new_instance<Synchronize>();
     }
@@ -23,12 +24,14 @@ void Synchronize::create_sync(SynchronizePtr& sync) {
 bool Synchronize::lock(int32_t timeout) {
     if (timeout > 0) {
         bool success = m_mutexSynchronize.try_lock_for(std::chrono::milliseconds(timeout));
+
         if (!success) {
             return false;
         }
     } else {
         m_mutexSynchronize.lock();
     }
+
     m_lockThread = LuceneThread::current_id();
     ++m_recursionCount;
     return true;
@@ -40,14 +43,17 @@ void Synchronize::unlock() {
     } else if (--m_recursionCount == 0) {
         m_lockThread = 0;
     }
+
     m_mutexSynchronize.unlock();
 }
 
 int32_t Synchronize::unlock_all() {
     int32_t count = m_recursionCount;
+
     for (int32_t unlock = 0; unlock < count; ++unlock) {
         this->unlock();
     }
+
     return count;
 }
 

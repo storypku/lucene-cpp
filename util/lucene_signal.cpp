@@ -15,6 +15,7 @@ LuceneSignal::~LuceneSignal() {
 void LuceneSignal::create_signal(LuceneSignalPtr& signal, const SynchronizePtr& objectLock) {
     static std::mutex lockMutex;
     std::lock_guard<std::mutex> syncLock(lockMutex);
+
     if (!signal) {
         signal = new_instance<LuceneSignal>(objectLock);
     }

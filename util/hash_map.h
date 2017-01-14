@@ -68,7 +68,7 @@ public:
         return m_container.get() != NULL;
     }
 
-    bool operator! () const {
+    bool operator!() const {
         return !m_container;
     }
 
@@ -115,7 +115,7 @@ public:
         return (m_container->find(key) != m_container->end());
     }
 
-    VALUE& operator[] (const KEY& key) {
+    VALUE& operator[](const KEY& key) {
         return (*m_container)[key];
     }
 };
@@ -139,20 +139,25 @@ public:
         if (!this->m_container || this->m_container->empty()) {
             return;
         }
+
         map_type clearCopy;
+
         for (iterator key = this->m_container->begin(); key != this->m_container->end(); ++key) {
             if (!key->first.expired()) {
                 clearCopy.insert(*key);
             }
         }
+
         this->m_container->swap(clearCopy);
     }
 
     VALUE get(const KEY& key) {
         iterator findValue = this->m_container->find(key);
+
         if (findValue != this->m_container->end()) {
             return findValue->second;
         }
+
         remove_weak();
         return VALUE();
     }

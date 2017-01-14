@@ -111,7 +111,8 @@ public:
 
     template <class PRED>
     void remove_if(PRED comp) {
-        m_container->erase(std::remove_if(m_container->begin(), m_container->end(), comp), m_container->end());
+        m_container->erase(std::remove_if(m_container->begin(), m_container->end(), comp),
+                           m_container->end());
     }
 
     TYPE remove_first() {
@@ -153,6 +154,7 @@ public:
         if (m_container->size() != other.m_container->size()) {
             return false;
         }
+
         return std::equal(m_container->begin(), m_container->end(), other.m_container->begin(), comp);
     }
 
@@ -164,11 +166,11 @@ public:
         m_container.swap(other->m_container);
     }
 
-    TYPE& operator[] (int32_t pos) {
+    TYPE& operator[](int32_t pos) {
         return (*m_container)[pos];
     }
 
-    const TYPE& operator[] (int32_t pos) const {
+    const TYPE& operator[](int32_t pos) const {
         return (*m_container)[pos];
     }
 
@@ -176,7 +178,7 @@ public:
         return m_container.get() != NULL;
     }
 
-    bool operator! () const {
+    bool operator!() const {
         return !m_container;
     }
 
@@ -218,42 +220,48 @@ Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, 
 }
 
 template <typename TYPE>
-Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4, const TYPE& a5) {
+Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4,
+                                const TYPE& a5) {
     Collection<TYPE> result = new_collection(a1, a2, a3, a4);
     result.add(a5);
     return result;
 }
 
 template <typename TYPE>
-Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4, const TYPE& a5, const TYPE& a6) {
+Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4,
+                                const TYPE& a5, const TYPE& a6) {
     Collection<TYPE> result = new_collection(a1, a2, a3, a4, a5);
     result.add(a6);
     return result;
 }
 
 template <typename TYPE>
-Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4, const TYPE& a5, const TYPE& a6, const TYPE& a7) {
+Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4,
+                                const TYPE& a5, const TYPE& a6, const TYPE& a7) {
     Collection<TYPE> result = new_collection(a1, a2, a3, a4, a5, a6);
     result.add(a7);
     return result;
 }
 
 template <typename TYPE>
-Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4, const TYPE& a5, const TYPE& a6, const TYPE& a7, const TYPE& a8) {
+Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4,
+                                const TYPE& a5, const TYPE& a6, const TYPE& a7, const TYPE& a8) {
     Collection<TYPE> result = new_collection(a1, a2, a3, a4, a5, a6, a7);
     result.add(a8);
     return result;
 }
 
 template <typename TYPE>
-Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4, const TYPE& a5, const TYPE& a6, const TYPE& a7, const TYPE& a8, const TYPE& a9) {
+Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4,
+                                const TYPE& a5, const TYPE& a6, const TYPE& a7, const TYPE& a8, const TYPE& a9) {
     Collection<TYPE> result = new_collection(a1, a2, a3, a4, a5, a6, a7, a8);
     result.add(a9);
     return result;
 }
 
 template <typename TYPE>
-Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4, const TYPE& a5, const TYPE& a6, const TYPE& a7, const TYPE& a8, const TYPE& a9, const TYPE& a10) {
+Collection<TYPE> new_collection(const TYPE& a1, const TYPE& a2, const TYPE& a3, const TYPE& a4,
+                                const TYPE& a5, const TYPE& a6, const TYPE& a7, const TYPE& a8, const TYPE& a9, const TYPE& a10) {
     Collection<TYPE> result = new_collection(a1, a2, a3, a4, a5, a6, a7, a8, a9);
     result.add(a10);
     return result;

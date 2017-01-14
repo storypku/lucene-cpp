@@ -11,7 +11,8 @@ class MiscUtils {
 public:
     /// Copy elements from on buffer to another
     template <typename SOURCE, typename DEST>
-    static void array_copy(SOURCE source, int32_t sourceOffset, DEST dest, int32_t destOffset, int32_t length) {
+    static void array_copy(SOURCE source, int32_t sourceOffset, DEST dest, int32_t destOffset,
+                           int32_t length) {
         std::copy(source + sourceOffset, source + sourceOffset + length, dest + destOffset);
     }
 
