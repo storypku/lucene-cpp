@@ -1,6 +1,3 @@
-#include <boost/filesystem/path.hpp>
-#include <boost/filesystem/operations.hpp>
-
 #include "lucene.h"
 #include "lucene_thread.h"
 #include "file_utils.h"

@@ -12,7 +12,7 @@
 
 using namespace Lucene;
 
-int main(UNUSED int argc, UNUSED char *argv[]) {
+int main(UNUSED int argc, UNUSED char* argv[]) {
     std::cout << "Hello lucene\n";
     RAMDirectoryPtr directory(new_instance<RAMDirectory>());
     IndexOutputPtr out = directory->create_output("hello");

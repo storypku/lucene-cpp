@@ -4,7 +4,7 @@ CC=g++
 CXXFLAGS=-g -fPIC -Wall -Wextra -std=c++11
 LDFLAGS=-L/usr/local/lib -lboost_system-mt -lboost_thread-mt -lboost_filesystem-mt -lboost_iostreams-mt
 
-INCLUDES := -Iindex -Istore -Iutil -Istore -Iserver
+INCLUDES := -Iindex -Iutil -Istore -Iserver
 
 SOURCES := $(wildcard util/*.cpp index/*.cpp store/*.cpp store/*.cpp server/*.cpp)
 OBJECTS := $(patsubst %.cpp, %.o, $(SOURCES))

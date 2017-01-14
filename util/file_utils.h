@@ -1,6 +1,9 @@
 #ifndef FILE_UTILS_H
 #define FILE_UTILS_H
 
+#include <boost/filesystem/path.hpp>
+#include <boost/filesystem/operations.hpp>
+
 #include "lucene_object.h"
 
 namespace Lucene {
