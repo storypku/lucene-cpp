@@ -2,6 +2,7 @@
 #define SINGLE_INSTANCE_LOCK_FACTORY_H
 
 #include "lock_factory.h"
+#include "lock.h"
 
 namespace Lucene {
 
@@ -30,6 +31,33 @@ public:
     /// certain this lock is no longer in use.
     /// @param lockName name of the lock to be cleared.
     virtual void clear_lock(const String& lockName);
+};
+
+class SingleInstanceLock : public Lock {
+public:
+    SingleInstanceLock(HashSet<String> locks, const String& lockName);
+    virtual ~SingleInstanceLock();
+
+    LUCENE_CLASS(SingleInstanceLock);
+
+protected:
+    HashSet<String> m_locks;
+    String m_lockName;
+
+public:
+    /// Attempt to obtain exclusive access and immediately return upon success
+    /// or failure.
+    /// @return true if exclusive is obtained.
+    virtual bool obtain();
+
+    /// Releases exclusive access.
+    virtual void release();
+
+    /// Returns true if the resource is currently locked. Note that one must
+    // still call #obtain() before using the resource.
+    virtual bool is_locked();
+
+    virtual String to_string();
 };
 
 } // namespace Lucene
