@@ -53,7 +53,7 @@ public:
     /// The number of bytes in the file.
     virtual int64_t length() = 0;
 
-protocted:
+protected:
     /// Implements buffer write. Writes bytes at the current position in the
     /// output.
     /// @param b the bytes to write.

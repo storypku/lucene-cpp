@@ -4,6 +4,7 @@
 #include "directory.h"
 #include "index_input.h"
 #include "info_stream.h"
+#include "native_fs_lock_factory.h"
 #include "ram_output_stream.h"
 #include "ram_directory.h"
 #include "file_utils.h"
@@ -21,7 +22,13 @@ int main(UNUSED int argc, UNUSED char* argv[]) {
     IndexInputPtr in = directory->open_input("hello");
     uint8_t byte = in->read_byte();
     std::cout << byte << "\n";
-    std::cout << MiscUtils::current_time_millis() << " " << time(NULL) << "\n";
+    NativeFSLockFactoryPtr fsLock = new_instance<NativeFSLockFactory>("indexDir");
+    LockPtr lock = fsLock->make_lock("nativeLock.lock");
+    bool success = lock->obtain();
+    std::cout << "Obtain lock: " << success << "\n";
+    sleep(60);
+    lock->release();
+    fsLock->clear_lock("nativeLock.lock");
 
     return 0;
 }

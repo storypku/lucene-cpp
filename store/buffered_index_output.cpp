@@ -69,12 +69,21 @@ void BufferedIndexOutput::flush_buffer(const uint8_t* b, int32_t length) {
     flush_buffer(b, 0, length);
 }
 
-void BufferedIndexOutput::flush_buffer(const uint8_t* b, int32_t offset, int32_t length) {
+void BufferedIndexOutput::flush_buffer(UNUSED const uint8_t* b, UNUSED int32_t offset, UNUSED int32_t length) {
     // override
 }
 
 void BufferedIndexOutput::close() {
     flush();
+}
+
+int64_t BufferedIndexOutput::get_file_pointer() {
+    return m_bufferStart + m_bufferPosition;
+}
+
+void BufferedIndexOutput::seek(int64_t pos) {
+    flush();
+    m_bufferStart = pos;
 }
 
 }

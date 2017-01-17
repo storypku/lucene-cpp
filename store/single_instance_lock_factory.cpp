@@ -46,7 +46,5 @@ String SingleInstanceLock::to_string() {
     return m_lockName;
 }
 
-
-
 } // namespace Lucene
 
