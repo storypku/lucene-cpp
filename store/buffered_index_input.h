@@ -40,7 +40,7 @@ public:
     /// @param b the array to read bytes into.
     /// @param offset the offset in the array to start storing bytes.
     /// @param length the number of bytes to read.
-    virtual void read_bytes(uint8_t *b, int32_t offset, int32_t length);
+    virtual void read_bytes(uint8_t* b, int32_t offset, int32_t length);
 
     /// Close the stream.
     virtual void close();
@@ -65,7 +65,7 @@ protected:
     /// @param b the array to read bytes into.
     /// @param offset the offset in the array to start storing bytes.
     /// @param length the number of bytes to read.
-    virtual void read_internal(uint8_t *b, int32_t offset, int32_t length) = 0;
+    virtual void read_internal(uint8_t* b, int32_t offset, int32_t length) = 0;
 
     /// Implements seek. Set current position in this file, where the next
     /// #read_internal(uint8_t*, int32_t, int32_t) will occur.
