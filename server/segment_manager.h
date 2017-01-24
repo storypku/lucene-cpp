@@ -1,7 +1,8 @@
+#ifndef SEGMENT_MANAGER_H
+#define SEGMENT_MANAGER_H
+
 #include "lucene.h"
-#include <memory>
-#include <mutex>
-#include <iostream>
+#include <boost/thread/shared_mutex.hpp>
 
 namespace Lucene {
 
@@ -9,24 +10,30 @@ class SegmentManager;
 typedef std::shared_ptr<SegmentManager> SegmentManagerPtr;
 
 class SegmentManager : public LuceneObject {
+protected:
+    SegmentManager();
+
 public:
-    static SegmentManagerPtr get_instance() {
-        static SegmentManagerPtr instance;
-        if (!instance) {
-            instance.reset(new SegmentManager());
-        }
-        return instance;
-    }
+    virtual ~SegmentManager();
+    static SegmentManagerPtr get_instance();
 
 protected:
-    std::mutex _crud_mutex;
-    std::mutex _name_mutex;
-    int32_t _segnum_maximum;
     std::vector<String> _segments;
+    boost::shared_mutex _crud_mutex;
+
+    std::mutex _name_mutex;
+
+    int32_t _segnum_maximum;
+    int32_t _msg_id_maximum;
+
+    String _filepath;
 
 public:
-    SegmentManager() : _segnum_maximum(0) {
-    }
+    int load_from_file(const String& dir, const String& name);
+    int save_to_file();
+
+    void read_from(IndexInputPtr input);
+    void write_to(IndexOutputPtr output);
 
     String next_avail_name() {
         int32_t segnum = 0;
@@ -39,12 +46,12 @@ public:
     }
 
     void add_segment(const String& segment) {
-        std::lock_guard<std::mutex> lock(_crud_mutex);
+        std::unique_lock<boost::shared_mutex> lock(_crud_mutex);
         _segments.push_back(segment);
     }
 
     void on_merge(const String& segnew, const String& seg1, const String& seg2) {
-        std::lock_guard<std::mutex> lock(_crud_mutex);
+        boost::unique_lock<boost::shared_mutex> lock(_crud_mutex);
 
         _segments.erase(std::find(_segments.begin(), _segments.end(), seg1));
         _segments.erase(std::find(_segments.begin(), _segments.end(), seg2));
@@ -52,22 +59,14 @@ public:
         _segments.push_back(segnew);
     }
 
-    void print() {
+    void get_segments(std::vector<String>& result) {
+        boost::shared_lock<boost::shared_mutex> lock(_crud_mutex);
         for (const auto& i : _segments) {
-            std::cout << i << "\n";
+            result.push_back(i);
         }
     }
 };
 
+} // namespace Lucene
 
-}
-
-using namespace Lucene;
-int main() {
-    SegmentManagerPtr instance = SegmentManager::get_instance();
-    instance->add_segment("1");
-    instance->add_segment("2");
-    instance->add_segment("3");
-    instance->on_merge("4", "2", "3");
-    instance->print();
-}
+#endif // SEGMENT_MANAGER_H
