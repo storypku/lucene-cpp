@@ -26,6 +26,8 @@ class file_lock;
 namespace Lucene {
 
 typedef std::shared_ptr<std::ifstream> IfstreamPtr;
+typedef std::shared_ptr<std::ofstream> OfstreamPtr;
+
 typedef std::shared_ptr<boost::interprocess::file_lock> FileLockPtr;
 typedef HashMap<String, String> MapStringString;
 

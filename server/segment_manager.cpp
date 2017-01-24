@@ -21,8 +21,8 @@ SegmentManagerPtr SegmentManager::get_instance() {
     return instance;
 }
 
-int load_from_file(const String& dir, const String& name) {
-    _filepath = FileUtils::join_path(dir, name);
+int SegmentManager::load_from_file(const String& dir, const String& name) {
+    _path = FileUtils::join_path(dir, name);
     return 0;
 }
 

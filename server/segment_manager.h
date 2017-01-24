@@ -26,7 +26,7 @@ protected:
     int32_t _segnum_maximum;
     int32_t _msg_id_maximum;
 
-    String _filepath;
+    String _path;
 
 public:
     int load_from_file(const String& dir, const String& name);
