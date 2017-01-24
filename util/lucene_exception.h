@@ -18,7 +18,7 @@ public:
         IllegalArgument,
         IllegalState,
         IndexOutOfBounds,
-        IO,
+        IO, // 9
         LockObtainFailed,
         LockReleaseFailed,
         Lookahead,
