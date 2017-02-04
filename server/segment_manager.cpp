@@ -23,7 +23,7 @@ SegmentManagerPtr SegmentManager::get_instance() {
     return instance;
 }
 
-int SegmentManager::load_from_file(const String&  const String& name) {
+int SegmentManager::init_from_file(const String& name) {
     return 0;
 }
 

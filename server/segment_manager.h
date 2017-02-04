@@ -4,11 +4,11 @@
 #include "lucene.h"
 #include <boost/thread/shared_mutex.hpp>
 
+namespace Lucene {
+
 // Forward declaration.
 class SegmentManager;
 typedef std::shared_ptr<SegmentManager> SegmentManagerPtr;
-
-namespace Lucene {
 
 class SegmentManager : public LuceneObject {
 protected:
