@@ -11,6 +11,8 @@ cscope.*
 *.bak.cpp
 *.swp
 .idea/*
+a.out
+hello.cpp
 build/*
 index_data/*
 indexDir/*

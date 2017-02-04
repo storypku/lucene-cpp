@@ -31,10 +31,15 @@ protected:
 
 public:
     static const String& SEGMENTS_META;
+    static const int32_t MERGE_THRESHOLD;
 
 public:
     int init_from_file(const String& path);
 
+    // return currently working segments
+    std::vector<String> segments_at_work();
+
+    void merge();
 };
 
 } // namespace Lucene

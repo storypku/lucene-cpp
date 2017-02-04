@@ -1,6 +1,6 @@
 ECHO=echo
 
-CXX=/opt/compiler/gcc-4.8.2/bin/g++
+CXX=g++
 
 CXXFLAGS=-g -fPIC -Wall -Wextra -std=c++11
 LDFLAGS=-L/usr/local/lib -lboost_system-mt -lboost_thread-mt -lboost_filesystem-mt -lboost_iostreams-mt
