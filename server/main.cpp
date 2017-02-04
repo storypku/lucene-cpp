@@ -10,5 +10,6 @@ int main() {
     for (auto i : segs) {
         std::cout << i << std::endl;
     }
+    SegmentManager::get_instance()->merge();
     return 0;
 }

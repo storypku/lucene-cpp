@@ -39,6 +39,8 @@ public:
     // return currently working segments
     std::vector<String> segments_at_work();
 
+    String next_segment_name();
+
     void merge();
 };
 
