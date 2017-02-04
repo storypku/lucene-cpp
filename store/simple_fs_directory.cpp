@@ -150,7 +150,7 @@ LuceneObjectPtr SimpleFSIndexInput::clone(const LuceneObjectPtr& other) {
 
 OutputFile::OutputFile(const String& path)
     : m_path(path) {
-    m_file = new_instance<std::ofstream>(m_path, std::ios::binary | std::ios::in);
+    m_file = new_instance<std::ofstream>(m_path, std::ios::binary | std::ios::out);
 }
 
 OutputFile::~OutputFile() {

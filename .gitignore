@@ -12,5 +12,6 @@ cscope.*
 *.swp
 .idea/*
 build/*
+index_data/*
 indexDir/*
 lucene
