@@ -5,9 +5,11 @@
 
 namespace Lucene {
 
+const String& SegmentManager::SEGMENTS_META = "segments.meta";
+
 SegmentManager::SegmentManager()
-    : _segnum_maximum(0)
-    , _msg_id_maximum(0) {
+    : _seg_num_max(0)
+    , _msg_id_max(0) {
 }
 
 SegmentManager::~SegmentManager() {
@@ -21,8 +23,7 @@ SegmentManagerPtr SegmentManager::get_instance() {
     return instance;
 }
 
-int SegmentManager::load_from_file(const String& dir, const String& name) {
-    _path = FileUtils::join_path(dir, name);
+int SegmentManager::load_from_file(const String&  const String& name) {
     return 0;
 }
 
