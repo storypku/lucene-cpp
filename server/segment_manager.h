@@ -41,6 +41,8 @@ public:
 
     String next_segment_name();
 
+    void on_merge_done(const String& s1, const String& s2, const String& snew);
+
     void merge();
 };
 

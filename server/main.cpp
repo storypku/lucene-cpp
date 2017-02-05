@@ -1,4 +1,5 @@
 #include "segment_manager.h"
+#include "merge_thread.h"
 #include <iostream>
 
 using namespace Lucene;
@@ -10,6 +11,11 @@ int main() {
     for (auto i : segs) {
         std::cout << i << std::endl;
     }
-    SegmentManager::get_instance()->merge();
+
+    MergeThread::get_instance()->start();
+
+    MergeThread::get_instance()->stop();
+
+    sleep(50);
     return 0;
 }
