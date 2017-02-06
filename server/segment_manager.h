@@ -25,14 +25,14 @@ protected:
     std::mutex _unique_name_mutex;
     int32_t _seg_num_max;
 
-    int32_t _msg_id_max;
-
     String _directory;
 public:
     static const String& SEGMENTS_META;
 
 public:
     int init_from_file(const String& path);
+    int save_to_file();
+
     // return current working segments
     std::vector<String> segments_at_work();
     String next_segment_name();

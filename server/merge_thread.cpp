@@ -23,6 +23,7 @@ void MergeThread::run() {
             LuceneThread::thread_sleep(5000); // 5 secs
             continue;
         }
+
         std::sort(snapshot.begin(), snapshot.end(), [](const String& s1, const String& s2) {
                     return std::stoi(s1) <= std::stoi(s2);
                 });
@@ -52,9 +53,9 @@ MergeThreadPtr MergeThread::get_instance() {
     if (!merge_thread) {
         merge_thread = new_lucene<MergeThread>();
     }
-    if (!merge_thread->is_alive()) {
-        merge_thread->start();
-    }
+    // if (!merge_thread->is_alive()) {
+    //    merge_thread->start();
+    // }
     return merge_thread;
 }
 

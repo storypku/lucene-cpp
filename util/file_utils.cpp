@@ -52,7 +52,8 @@ bool remove_file(const String& path) {
 
 bool copy_file(const String& source, const String& dest) {
     boost::system::error_code ec;
-    boost::filesystem::copy_file(source.c_str(), dest.c_str(), ec);
+    boost::filesystem::copy_file(source.c_str(), dest.c_str(),
+                        boost::filesystem::copy_option::overwrite_if_exists, ec);
     return !ec;
 }
 
