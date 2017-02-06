@@ -12,6 +12,8 @@ public:
     MergeThread();
     virtual ~MergeThread();
 
+    static const int32_t MERGE_THRESHOLD;
+
 public:
     virtual void start();
 

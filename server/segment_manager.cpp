@@ -7,7 +7,6 @@
 namespace Lucene {
 
 const String& SegmentManager::SEGMENTS_META = "segments.meta";
-const int32_t SegmentManager::MERGE_THRESHOLD = 3;
 
 SegmentManager::SegmentManager()
     : _seg_num_max(0)
@@ -71,24 +70,9 @@ void SegmentManager::on_merge_done(const String& s1, const String& s2, const Str
     _segments.push_back(snew);
 }
 
-void SegmentManager::merge() {
-    // TODO signal handler
-    while (true) {
-        std::vector<String> snapshot = segments_at_work();
-        int32_t num_segs = snapshot.size();
-        if (num_segs < MERGE_THRESHOLD) {
-            LuceneThread::thread_sleep(3000);
-        } else {
-            std::sort(snapshot.begin(), snapshot.end(), [](const String& s1, const String& s2) {
-                return std::stoi(s1) <= std::stoi(s2);
-            });
-            String seg1 = snapshot[0];
-            String seg2 = snapshot[1];
-            String newborn = next_segment_name();
-            std::cout << "seg1: " << seg1 << ", seg2: " << seg2 << ", merged: " << newborn << "\n";
-            LuceneThread::thread_sleep(6000);
-        }
-    }
+void SegmentManager::add_segment(const String& snew) {
+    boost::unique_lock<boost::shared_mutex> lock(_segments_mutex);
+    _segments.push_back(snew);
 }
 
 } // namespace Lucene

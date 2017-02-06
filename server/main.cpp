@@ -12,10 +12,9 @@ int main() {
         std::cout << i << std::endl;
     }
 
-    MergeThread::get_instance()->stop();
+    MergeThreadPtr merge_thread = MergeThread::get_instance();
+    sleep(50);
+    merge_thread->stop();
 
-    while(true) {
-        sleep(50);
-    }
     return 0;
 }

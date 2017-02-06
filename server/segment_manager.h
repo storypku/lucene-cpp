@@ -30,19 +30,17 @@ protected:
     String _directory;
 public:
     static const String& SEGMENTS_META;
-    static const int32_t MERGE_THRESHOLD;
 
 public:
     int init_from_file(const String& path);
-
-    // return currently working segments
+    // return current working segments
     std::vector<String> segments_at_work();
-
     String next_segment_name();
 
+public:
     void on_merge_done(const String& s1, const String& s2, const String& snew);
 
-    void merge();
+    void add_segment(const String& s);
 };
 
 } // namespace Lucene
