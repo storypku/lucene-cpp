@@ -85,7 +85,7 @@ void SegmentManager::merge() {
             String seg1 = snapshot[0];
             String seg2 = snapshot[1];
             String newborn = next_segment_name();
-            // std::cout << "seg1: " << seg1 << ", seg2: " << seg2 << ", merged: " << newborn << "\n";
+            std::cout << "seg1: " << seg1 << ", seg2: " << seg2 << ", merged: " << newborn << "\n";
             LuceneThread::thread_sleep(6000);
         }
     }

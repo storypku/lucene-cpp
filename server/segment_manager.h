@@ -28,7 +28,6 @@ protected:
     int32_t _msg_id_max;
 
     String _directory;
-
 public:
     static const String& SEGMENTS_META;
     static const int32_t MERGE_THRESHOLD;
